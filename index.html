@@ -1,118 +1,168 @@
 <!DOCTYPE html>
 <html lang="en-US">
-	<head>
-		<meta charset="utf-8">
-		<title>Michelle's Digital Garden❀</title>
+  <head>
+    <meta charset="utf-8">
+    <title>Michelle's Digital Art❀</title>
     <style>
-      @keyframes zoom{
+      @keyframes zoom {
         0% {
           transform: scale(1.05);
         }
-        
+
         50% {
           transform: scale(0.9);
         }
-        
+
         100% {
           transform: scale(1.05);
         }
       }
-      
-      body{
+
+      body {
         height: 100vh;
-        font-family: "Times New Roman", sans-serif;
-          background-color: white;
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
-          background-repeat: no-repeat;
+        cursor: url(oth505.cur), auto;
+        font-family: "Courier New", sans-serif;
+        background-color: rgb(255, 240, 255);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
       }
-      
+
       .h1 {
-      	font-size: 7vw;
+        font-size: 8vw;
         text-align: center;
         text-decoration: pink dotted underline;
-/*        animation: zoom 4s 3;*/
+        background-color: white;
+        border: 2px solid black;
+        box-shadow: rgb(255, 156, 175) 10px 15px;
       }
       
-      h2 {
+      .h2 {
         font-size: 3vw;
-        text-decoration: underline;
+        margin: auto;
+        width: 30%;
+        text-align: center;
+        text-decoration: pink dotted underline;
+        background-color: white;
+        border: 2px solid black;
+        box-shadow: pink 5px 5px;
+        
       }
       
+      .h4 {
+        font-size: 3vw;
+        text-align: left;
+        text-decoration: pink dotted underline;
+        background-color: pink;
+        border: 1px double black;
+        box-shadow: gray 10px 10px;
+      }
+
       p {
         font-size: 2vw;
       }
-      
+
       .center {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 40%;
+        text-align: center;
       }
-      
+
       .border {
-        display: block;
+        display: inline;
         margin-left: auto;
         margin-right: auto;
-        width: 40%;
-        border: 10px double black;
-        transition: transform 0.5s;
+        width: 20%;
+        border: 5px double rgb(167, 133, 0);
+        background-color: black;
+        transition: transform 0.3s;
+        box-shadow: gray 3px 5px 3px;
       }
-      
+
       .border:hover {
-        transform: scale(1.1) ;
+        transform: scale(1.1);
+        filter: hue-rotate(-0.25turn);
+        box-shadow: black 3px 5px 3px;
+      }
+
+      #myBtn:hover {
+        background-color: #ff9cc5;
       }
       
     </style>
-	</head>
-	<body>
-    <div>
-      <h1 class="h1">❀Michelle's Digital Garden❀</h1>
-      <h2 class="h2">I began self-studying digital art in 2019. Below is an account of my journey.⋆｡°✩
-        ⋆｡°✩⋆｡°✩click on each image for a description
-      </h2>
-    </div>
-    
-    <img src="nov2022.jpg" alt="November 2022" class="border">
-    <p>November 2022: portrait and color</p>
-    
-    <img src="jul2022.PNG" alt="July 2022" class="border">
-    <p>July 2022: started combining previous styles of texture, abstraction, and blur
-     and developing my digital art style. use of color</p>
-    
-    <img src="july2022.jpg" alt="July 2022" class="border">
-    <p>July 2022: more plays on texture and abstraction. using blur to create
-    images i could not traditionally make.</p>
-    
-    <img src="jun2022.jpg" alt="June 2022" class="border">
-    <p>June 2022: started playing with texture, here i used a clear textured brush
-    to make the smudge effect.</p>
-    
-    <img src="june2022.jpg" alt="June 2022" class="border">
-    <p>June 2022: mimicing still life studies I would do in studio art classes. 
-    attempted to make the piece slightly more blurry/abstract feeling.</p>
-    
-    <img src="mar2022.PNG" alt="March 2022" class="border">
-    <p>March 2022: another exploration of abstract art. trying to capture 
-    an emotion. </p>
-    
-    <img src="march2022.PNG" alt="March 2022" class="border">
-    <p>March 2022: began exploring abstract art - something I have never
-    experimented with. playing with color and shape.</p>
-    
-    <img src="jan2022.jpg" alt="January 2022" class="border">
-    <p>January 2022: Black Lagoon manga cover. using glow technique and more lineart</p>
-    
-    <img src="mar2021.JPG" alt="March 2021" class="border">
-    <p>March 2021: fanart I made. I enjoyed doing the lighting in the back. Learning
-    how to do lineart on the iPad. </p>
-    
-    <img src="may2019.JPG" alt="May 2019" class="border">
-    <p>May 2019: Ariana Grande's Sweetener cover was the first digital 
-      art piece I ever made. focusing on recreation. Began on Autodesk Sketchbook</p>
+  </head>
+  <body>
+    <script>
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+      
+      function createEmoji (x, y) {
+        const emojis = ['❀', '₊｡', 'ꕤ', '⊹']
+        const ran = Math.floor(Math.random() * emojis.length)
+        const emoji = emojis[ran]
+        // create span element for emoji
+        const ele = document.createElement('span')
+        ele.textContent = emoji
+        ele.className = 'emoji-trail'
+        // size && position emoji
+        ele.style.position = 'absolute'
+        ele.style.left = x + 'px'
+        ele.style.top = y + 'px'
+        ele.style.fontSize = '30px'
+        ele.style.color = 'pink'
+        // set emoji data
+        ele.dataset.velocity = {
+          x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+          y: 1
+        }
+        return ele
+      }
 
-    <p class="center">button</p>
+      function updateEmoji (emoji) {
+        let x = parseInt(emoji.style.left)
+        let y = parseInt(emoji.style.top)
+        let f = parseInt(emoji.style.fontSize)
+        x += parseInt(emoji.dataset.velocity.x)
+        y += parseInt(emoji.dataset.velocity.y)
+        f -= 0.25
+        emoji.style.left = x + 'px'
+        emoji.style.top = y + 'px'
+        emoji.style.fontSize = f + 'px'
+        if (f < 0) emoji.remove()
+        else setTimeout(updateEmoji, 1000 / 30, emoji)
+      }
+
+      window.addEventListener('mousemove', (e) => {
+        const emoji = createEmoji(e.clientX, e.clientY)
+        document.body.appendChild(emoji)
+        updateEmoji(emoji)
+      })
+    </script>
+    <div>
+      <h1 class="h1">❀Digital Art Garden❀</h1>
+      <h2 class="h2">❀Michelle Liu❀</h2>
+      <h4 class="h4">I began self-studying digital art in 2019. Below is an account of my journey.
+        Click on each image to learn more.
+      </h4>
+    </div>
+    <img src="nov2022.jpg" alt="November 2022" class="border">
+    <img src="jul2022.PNG" alt="July 2022" class="border">
+    <img src="july2022.jpg" alt="July 2022" class="border">
+    <img src="jun2022.jpg" alt="June 2022" class="border">
+    <img src="june2022.jpg" alt="June 2022" class="border">
+    <img src="mar2022.PNG" alt="March 2022" class="border">
+    <img src="march2022.PNG" alt="March 2022" class="border">
+    <img src="jan2022.jpg" alt="January 2022" class="border">
+    <img src="mar2021.JPG" alt="March 2021" class="border">
+    <img src="may2019.JPG" alt="May 2019" class="border">
+
+    <div></div>
+    <button onclick="topFunction()" id="myBtn" title="Top of page" class="center">Top</button>
+
     <img src="flowers.gif" alt="flowers gif" class="center">
-	</body>
+  </body>
 </html>
