@@ -22,7 +22,7 @@
         height: 100vh;
         cursor: url(oth505.cur), auto;
         font-family: "Courier New", sans-serif;
-        background: radial-gradient(ellipse farthest-corner at top right, #ffffff 0%, #c797bc 100%);
+        background-color: rgb(161, 248, 203);
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -37,7 +37,7 @@
         border: 2px solid black;
         box-shadow: rgb(255, 156, 175) 10px 15px;
       }
-      
+
       .h2 {
         font-size: 3vw;
         margin: auto;
@@ -47,9 +47,9 @@
         background-color: white;
         border: 2px solid black;
         box-shadow: pink 5px 5px;
-        
+
       }
-      
+
       .h4 {
         font-size: 3vw;
         text-align: left;
@@ -90,6 +90,36 @@
       #myBtn:hover {
         background-color: #ff9cc5;
       }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 245, 254, 0.9);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        border: 5px dotted black;
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 50px;
+        color: black;
+        cursor: pointer;
+        background-color: gray;
+        border: 5px dotted black;
+      }
       
     </style>
   </head>
@@ -99,8 +129,8 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       }
-      
-      function createEmoji (x, y) {
+
+      function createEmoji(x, y) {
         const emojis = ['❀', '₊｡', 'ꕤ', '⊹']
         const ran = Math.floor(Math.random() * emojis.length)
         const emoji = emojis[ran]
@@ -111,7 +141,7 @@
         // size && position emoji
         ele.style.position = 'absolute'
         ele.style.left = x + 'px'
-        ele.style.top = y + 'px'
+        ele.style.top = y + window.scrollY + 'px'
         ele.style.fontSize = '30px'
         ele.style.color = 'pink'
         // set emoji data
@@ -122,7 +152,7 @@
         return ele
       }
 
-      function updateEmoji (emoji) {
+      function updateEmoji(emoji) {
         let x = parseInt(emoji.style.left)
         let y = parseInt(emoji.style.top)
         let f = parseInt(emoji.style.fontSize)
@@ -137,10 +167,19 @@
       }
 
       window.addEventListener('mousemove', (e) => {
-        const emoji = createEmoji(e.clientX, e.clientY)
+        const emoji = createEmoji(e.clientX + 2, e.clientY + 2)
         document.body.appendChild(emoji)
         updateEmoji(emoji)
       })
+
+      function openPopup(image) {
+        document.getElementById('popupImage').src = image;
+        document.getElementById('popup').style.display = 'flex';
+      }
+
+      function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+      }
     </script>
     <div>
       <h1 class="h1">❀Digital Art Garden❀</h1>
@@ -150,27 +189,31 @@
       </h4>
     </div>
     <div><br></div>
-    <img src="nov2023.jpg" alt="November 2023" class="border">
-    <img src="oct2023.jpg" alt="October 2023" class="border">
-    <img src="may2023.PNG" alt="May 2023" class="border">
-    <img src="apr2023.PNG" alt="April 2023" class="border">
-    <img src="march2023.jpg" alt="March 2023" class="border">
-    <img src="febr2023.JPG" alt="February 2023" class="border">
-    <img src="feb2023.jpg" alt="February 2023" class="border">
-    <img src="jan2023.jpg" alt="January 2023" class="border">
-    <img src="dec2022.jpg" alt="December 2022" class="border">
-    <img src="nov2022.jpg" alt="November 2022" class="border">
-    <img src="jul2022.PNG" alt="July 2022" class="border">
-    <img src="july2022.jpg" alt="July 2022" class="border">
-    <img src="jun2022.jpg" alt="June 2022" class="border">
-    <img src="june2022.jpg" alt="June 2022" class="border">
-    <img src="mar2022.PNG" alt="March 2022" class="border">
-    <img src="march2022.PNG" alt="March 2022" class="border">
-    <img src="jan2022.jpg" alt="January 2022" class="border">
-    <img src="mar2021.JPG" alt="March 2021" class="border">
-    <img src="may2019.JPG" alt="May 2019" class="border">
+    <div class="popup" id="popup">
+      <img id="popupImage" alt="Large Image">
+      <span class="close" onclick="closePopup()">&times;</span>
+    </div>
+    <img src="nov2023.JPG" alt="November 2023" class="border" onclick="openPopup('nov2023.JPG')">
+    <img src="oct2023.jpg" alt="October 2023" class="border" onclick="openPopup('oct2023.jpg')">
+    <img src="may2023.PNG" alt="May 2023" class="border" onclick="openPopup('may2023.PNG')">
+    <img src="apr2023.PNG" alt="April 2023" class="border" onclick="openPopup('apr2023.PNG')">
+    <img src="march2023.jpg" alt="March 2023" class="border" onclick="openPopup('march2023.jpg')">
+    <img src="febr2023.JPG" alt="February 2023" class="border" onclick="openPopup('febr2023.JPG')">
+    <img src="feb2023.jpg" alt="February 2023" class="border" onclick="openPopup('feb2023.jpg')">
+    <img src="jan2023.jpg" alt="January 2023" class="border" onclick="openPopup('jan2023.jpg')">
+    <img src="dec2022.jpg" alt="December 2022" class="border" onclick="openPopup('dec2022.jpg')">
+    <img src="nov2022.jpg" alt="November 2022" class="border" onclick="openPopup('nov2022.jpg')">
+    <img src="jul2022.PNG" alt="July 2022" class="border" onclick="openPopup('jul2022.PNG')">
+    <img src="july2022.jpg" alt="July 2022" class="border" onclick="openPopup('july2022.jpg')">
+    <img src="jun2022.jpg" alt="June 2022" class="border" onclick="openPopup('jun2022.jpg')">
+    <img src="june2022.jpg" alt="June 2022" class="border" onclick="openPopup('june2022.jpg')">
+    <img src="mar2022.PNG" alt="March 2022" class="border" onclick="openPopup('mar2022.PNG')">
+    <img src="march2022.PNG" alt="March 2022" class="border" onclick="openPopup('march2022.PNG')">
+    <img src="jan2022.jpg" alt="January 2022" class="border" onclick="openPopup('jan2022.jpg')">
+    <img src="mar2021.JPG" alt="March 2021" class="border" onclick="openPopup('mar2021.JPG')">
+    <img src="may2019.JPG" alt="May 2019" class="border" onclick="openPopup('may2019.JPG')">
 
-    <div><br></div>
+    <div><br><br></div>
     <button onclick="topFunction()" id="myBtn" title="Top of page" class="center">Top</button>
 
     <img src="flowers.gif" alt="flowers gif" class="center">
