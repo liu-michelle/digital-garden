@@ -21,8 +21,8 @@
       body {
         height: 100vh;
         cursor: url(oth505.cur), auto;
-        font-family: "Courier New", sans-serif;
-        background-color: rgb(161, 248, 203);
+        font-family: "Times New Roman", sans-serif;
+        background: radial-gradient(ellipse at bottom, #ffffff 40%, #2b2e3c 80%);
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -32,10 +32,15 @@
       .h1 {
         font-size: 8vw;
         text-align: center;
-        text-decoration: green dotted underline;
-        background-color: white;
-        border: 2px solid black;
-        box-shadow: rgb(255, 156, 175) 10px 15px;
+        background-color: rgba(255,255,255,0.7);
+        box-shadow: black 10px 10px 15px;
+        border: 1px solid gray;
+      }
+      
+      .h1:hover {
+        transform: scale(1.1);
+        filter: invert(1);
+        box-shadow: black 10px 15px 10px;
       }
 
       .h2 {
@@ -43,20 +48,31 @@
         margin: auto;
         width: 30%;
         text-align: center;
-        text-decoration: pink dotted underline;
-        background-color: white;
-        border: 2px solid black;
-        box-shadow: pink 5px 5px;
+        background-color: rgba(255,255,255,0.7);
+        box-shadow: black 10px 10px 15px;
+        border: 1px solid gray;
 
+      }
+      
+      .h2:hover {
+        transform: scale(1.1);
+        filter: invert(1);
+        box-shadow: black 3px 5px 3px;
       }
 
       .h4 {
+        margin: 5px;
         font-size: 3vw;
         text-align: left;
-        text-decoration: pink dotted underline;
-        background-color: pink;
-        border: 1px double black;
-        box-shadow: gray 10px 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 1px double gray;
+        box-shadow: black 10px 10px 15px;
+        line-height: 1.5;
+      }
+      
+      .h4:hover {
+        filter: invert(1);
+        box-shadow: black 10px 10px 3px;
       }
 
       p {
@@ -68,27 +84,35 @@
         margin-left: auto;
         margin-right: auto;
         text-align: center;
+        position: fixed;
+        bottom: 0px;
       }
 
       .border {
-        display: inline;
+        display: inline-block;
+        flex: 0 0 auto;
         margin-left: auto;
-        margin-right: auto;
-        width: 21%;
-        border: 5px double rgb(167, 133, 0);
-        background-color: black;
+        margin-right: 2%;
+        width: 35%;
+        height: 20%;
+        border: 10px double rgb(167, 133, 0);
+        background: radial-gradient(ellipse at top, #d9e486 31%, #9e7b3d 100%);
         transition: transform 0.3s;
-        box-shadow: gray 3px 5px 3px;
+        box-shadow: rgb(99, 98, 95) 5px 15px 8px;
       }
 
       .border:hover {
         transform: scale(1.1);
-        filter: brightness(1.1) hue-rotate(-0.25turn);
-        box-shadow: black 3px 5px 3px;
+        filter: brightness(1.1) invert(0.9);
+        box-shadow: white 5px 10px 5px;
       }
-
-      #hover:hover {
-        background-color: #ff9cc5;
+      
+      .scroll {
+        display: flex;
+        flex-wrap: no-wrap;
+        overflow-x: auto;
+        margin: 3%;
+        background-color: rgba(255,255,255,0.07);
       }
 
       .popup {
@@ -98,38 +122,46 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 245, 254, 0.9);
+        background: radial-gradient(ellipse at bottom, #ffffff 70%, #474447 100%);
         justify-content: center;
         align-items: center;
+        font-size: 20px;
       }
 
       .popup img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 90%;
+        max-height: 90%;
         display: block;
-        border: 10px double black;
+        border: 15px double rgb(167, 133, 0);
+        background: radial-gradient(ellipse at top, #d9e486 31%, #9e7b3d 100%);
+        box-shadow: rgb(65, 66, 67) 10px 25px 10px;
       }
 
       .close {
         position: absolute;
         top: 20px;
         right: 20px;
-        font-size: 50px;
-        color: black;
+        font-size: 20px;
         cursor: pointer;
-        background-color: rgb(192, 194, 191);
-        border: 5px double black;
+        background: white;
+        border: 2px solid black;
+        border-radius: 5% 5%;
+      }
+      
+      .floor {
+        background: radial-gradient(ellipse at top, #8f3838 45%, #2e1a1a 100%);
+        border: 1px solid black;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        height: 3vw;
       }
       
     </style>
   </head>
   <body>
     <script>
-      function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      }
-
+      // code is from emoji trail example
       function createEmoji(x, y) {
         const emojis = ['❀', '₊｡', 'ꕤ', '⊹']
         const ran = Math.floor(Math.random() * emojis.length)
@@ -143,7 +175,7 @@
         ele.style.left = x + 'px'
         ele.style.top = y + window.scrollY + 'px'
         ele.style.fontSize = '30px'
-        ele.style.color = 'pink'
+        ele.style.color = 'gray'
         // set emoji data
         ele.dataset.velocity = {
           x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
@@ -172,51 +204,57 @@
         updateEmoji(emoji)
       })
 
-      function openPopup(image) {
-        document.getElementById('popupImage').src = image;
+      function openPopup(image, text) {
         document.getElementById('popup').style.display = 'flex';
+        document.getElementById('popupImage').src = image;
+        document.getElementById('popupText').textContent = text;
       }
 
       function closePopup() {
         document.getElementById('popup').style.display = 'none';
       }
+      
+      function open(){
+        window.open('https://liumichelle.carrd.co/#', '_blank');
+      }
     </script>
     <div>
-      <h1 class="h1">❀Digital Art Garden❀</h1>
-      <h2 class="h2">❀Michelle Liu❀</h2>
-      <h4 class="h4">❀❀❀❀<br><u>About</u><br>I began self-studying digital art in 2019. Below is an account of my journey.
-        Click on each image in the gallery to view it in full-size and learn more.<br>❀❀❀❀
+      <h1 class="h1">Digital Art Gallery</h1>
+      <h2 class="h2" onclick=open()>Michelle Liu</h2><br>
+      <h4 class="h4"><u>About</u><br>Welcome to my digital art gallery! I began self-studying digital art in 2019 and it is now one of my favorite mediums. 
+        Below is an account of my chronological journey.
+        Click on each image in the gallery to view it in full-size and learn more.
+        <br>﹍﹍﹍﹍﹍
       </h4>
     </div>
-    <div><br><br></div>
-    <h2 class="h2">Gallery</h2><br>
+    <div><br><br><br></div>
+    <h2 class="h2">Gallery ⇨</h2>
     <div class="popup" id="popup">
       <img id="popupImage" alt="Large Image">
-      <span class="close" onclick="closePopup()">&times;</span>
+      <span class="close" onclick="closePopup()"> back </span>
     </div>
-    <img src="nov2023.JPG" alt="November 2023" class="border" onclick="openPopup('nov2023.JPG')">
-    <img src="oct2023.jpg" alt="October 2023" class="border" onclick="openPopup('oct2023.jpg')">
-    <img src="may2023.PNG" alt="May 2023" class="border" onclick="openPopup('may2023.PNG')">
-    <img src="apr2023.PNG" alt="April 2023" class="border" onclick="openPopup('apr2023.PNG')">
-    <img src="march2023.jpg" alt="March 2023" class="border" onclick="openPopup('march2023.jpg')">
-    <img src="febr2023.JPG" alt="February 2023" class="border" onclick="openPopup('febr2023.JPG')">
-    <img src="feb2023.jpg" alt="February 2023" class="border" onclick="openPopup('feb2023.jpg')">
-    <img src="jan2023.jpg" alt="January 2023" class="border" onclick="openPopup('jan2023.jpg')">
-    <img src="dec2022.jpg" alt="December 2022" class="border" onclick="openPopup('dec2022.jpg')">
-    <img src="nov2022.jpg" alt="November 2022" class="border" onclick="openPopup('nov2022.jpg')">
-    <img src="jul2022.PNG" alt="July 2022" class="border" onclick="openPopup('jul2022.PNG')">
-    <img src="july2022.jpg" alt="July 2022" class="border" onclick="openPopup('july2022.jpg')">
-    <img src="jun2022.jpg" alt="June 2022" class="border" onclick="openPopup('jun2022.jpg')">
-    <img src="june2022.jpg" alt="June 2022" class="border" onclick="openPopup('june2022.jpg')">
-    <img src="mar2022.PNG" alt="March 2022" class="border" onclick="openPopup('mar2022.PNG')">
-    <img src="march2022.PNG" alt="March 2022" class="border" onclick="openPopup('march2022.PNG')">
-    <img src="jan2022.jpg" alt="January 2022" class="border" onclick="openPopup('jan2022.jpg')">
-    <img src="mar2021.JPG" alt="March 2021" class="border" onclick="openPopup('mar2021.JPG')">
-    <img src="may2019.JPG" alt="May 2019" class="border" onclick="openPopup('may2019.JPG')">
+    <div class="scroll">
+      <img src="oct2023.jpg" alt="October 2023" class="border" onclick="openPopup('oct2023.jpg', 'hello')">
+      <img src="may2023.PNG" alt="May 2023" class="border" onclick="openPopup('may2023.PNG')">
+      <img src="apr2023.PNG" alt="April 2023" class="border" onclick="openPopup('apr2023.PNG')">
+      <img src="march2023.jpg" alt="March 2023" class="border" onclick="openPopup('march2023.jpg')">
+      <img src="febr2023.JPG" alt="February 2023" class="border" onclick="openPopup('febr2023.JPG')">
+      <img src="feb2023.jpg" alt="February 2023" class="border" onclick="openPopup('feb2023.jpg')">
+      <img src="jan2023.jpg" alt="January 2023" class="border" onclick="openPopup('jan2023.jpg')">
+      <img src="dec2022.jpg" alt="December 2022" class="border" onclick="openPopup('dec2022.jpg')">
+      <img src="nov2022.jpg" alt="November 2022" class="border" onclick="openPopup('nov2022.jpg')">
+      <img src="jul2022.PNG" alt="July 2022" class="border" onclick="openPopup('jul2022.PNG')">
+      <img src="july2022.jpg" alt="July 2022" class="border" onclick="openPopup('july2022.jpg')">
+      <img src="jun2022.jpg" alt="June 2022" class="border" onclick="openPopup('jun2022.jpg')">
+      <img src="june2022.jpg" alt="June 2022" class="border" onclick="openPopup('june2022.jpg')">
+      <img src="mar2022.PNG" alt="March 2022" class="border" onclick="openPopup('mar2022.PNG')">
+      <img src="march2022.PNG" alt="March 2022" class="border" onclick="openPopup('march2022.PNG')">
+      <img src="jan2022.jpg" alt="January 2022" class="border" onclick="openPopup('jan2022.jpg')">
+      <img src="mar2021.JPG" alt="March 2021" class="border" onclick="openPopup('mar2021.JPG')">
+      <img src="may2019.JPG" alt="May 2019" class="border" onclick="openPopup('may2019.JPG')">
+    </div>
 
-    <div><br><br></div>
-    <button onclick="topFunction()" id="hover" title="Top of page" class="center">Top</button>
-
-    <img src="flowers.gif" alt="flowers gif" class="center">
+    <div><br><br><br></div>
+    <div class="floor"></div>
   </body>
 </html>
