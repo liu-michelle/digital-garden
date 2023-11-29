@@ -41,6 +41,7 @@
         transform: scale(1.1);
         filter: invert(1);
         box-shadow: black 10px 15px 10px;
+        font-variant: small-caps;
       }
 
       .h2 {
@@ -58,6 +59,7 @@
         transform: scale(1.1);
         filter: invert(1);
         box-shadow: black 3px 5px 3px;
+        font-variant: small-caps;
       }
 
       .h4 {
@@ -73,10 +75,25 @@
       .h4:hover {
         filter: invert(1);
         box-shadow: black 10px 10px 3px;
+        font-variant: small-caps;
       }
-
-      p {
-        font-size: 2vw;
+			
+      .p {
+        font-size: 1.5vw;
+        font-style: oblique;
+        width: 25%;
+        height: 10%;
+        background-color: white;
+        text-align: center;
+        border: 1px solid gray;
+        box-shadow: gray 2px 2px;
+        margin: 5%;
+      }
+      
+      .p:hover {
+        box-shadow: black 5px 5px 3px;
+        color: blue;
+        text-decoration: underline;
       }
 
       .center {
@@ -139,12 +156,12 @@
 
       .close {
         position: absolute;
-        top: 20px;
+        top: 10px;
         right: 20px;
         font-size: 20px;
         cursor: pointer;
         background: white;
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5% 5%;
       }
       
@@ -155,6 +172,7 @@
         bottom: 0px;
         width: 100%;
         height: 3vw;
+        z-index: -1;
       }
       
     </style>
@@ -252,8 +270,9 @@
       <img src="jan2022.jpg" alt="January 2022" class="border" onclick="openPopup('jan2022.jpg')">
       <img src="mar2021.JPG" alt="March 2021" class="border" onclick="openPopup('mar2021.JPG')">
       <img src="may2019.JPG" alt="May 2019" class="border" onclick="openPopup('may2019.JPG')">
+			<p class="p">Thanks for viewing! Click here for my website!</p>
     </div>
-
+		
     <div><br><br><br></div>
     <div class="floor"></div>
   </body>
