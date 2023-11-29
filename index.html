@@ -2,7 +2,7 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
-    <title>Michelle's Digital Art ❀</title>
+    <title>Digital Art Gallery</title>
     <style>
       @keyframes zoom {
         0% {
@@ -35,6 +35,8 @@
         background-color: rgba(255,255,255,0.7);
         box-shadow: black 10px 10px 15px;
         border: 1px solid gray;
+        border-radius: 15px 15px;
+        padding: 5px;
       }
       
       .h1:hover {
@@ -52,7 +54,7 @@
         background-color: rgba(255,255,255,0.7);
         box-shadow: black 10px 10px 15px;
         border: 1px solid gray;
-
+        border-radius: 5px 5px;
       }
       
       .h2:hover {
@@ -70,6 +72,8 @@
         border: 1px double gray;
         box-shadow: black 10px 10px 15px;
         line-height: 1.5;
+        padding: 10px;
+        border-radius: 10px 10px;
       }
       
       .h4:hover {
@@ -88,12 +92,11 @@
         border: 1px solid gray;
         box-shadow: gray 2px 2px;
         margin: 5%;
+        padding: 5px;
       }
       
       .p:hover {
         box-shadow: black 5px 5px 3px;
-        color: blue;
-        text-decoration: underline;
       }
 
       .center {
@@ -129,7 +132,7 @@
         flex-wrap: no-wrap;
         overflow-x: auto;
         margin: 3%;
-        background-color: rgba(255,255,255,0.07);
+        background-color: rgba(255,255,255,0.1);
       }
 
       .popup {
@@ -142,7 +145,9 @@
         background: radial-gradient(ellipse at bottom, #ffffff 70%, #474447 100%);
         justify-content: center;
         align-items: center;
-        font-size: 20px;
+        text-align: center;
+        font-size: 40px;
+        z-index: 5;
       }
 
       .popup img {
@@ -158,15 +163,26 @@
         position: absolute;
         top: 10px;
         right: 20px;
-        font-size: 20px;
+        font-size: 40px;
+        width: 50px;
+        height: 50px;
         cursor: pointer;
-        background: white;
         border: 1px solid black;
-        border-radius: 5% 5%;
+        border-radius: 50% 50%;
+        text-align: center;
       }
       
       .floor {
-        background: radial-gradient(ellipse at top, #8f3838 45%, #2e1a1a 100%);
+        background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(98,57,38,1) 60%, rgba(172,152,42,1) 100%);
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        height: 3vw;
+        z-index: -1;
+      }
+      
+      .reflect {
+        background: radial-gradient(ellipse at top, #603337 45%, #2e0f0f 100%);
         border: 1px solid black;
         position: fixed;
         bottom: 0px;
@@ -193,7 +209,7 @@
         ele.style.left = x + 'px'
         ele.style.top = y + window.scrollY + 'px'
         ele.style.fontSize = '30px'
-        ele.style.color = 'gray'
+        ele.style.color = "rgb(202, 110, 204)"
         // set emoji data
         ele.dataset.velocity = {
           x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
@@ -249,10 +265,10 @@
     <h2 class="h2">Gallery ⇨</h2>
     <div class="popup" id="popup">
       <img id="popupImage" alt="Large Image">
-      <span class="close" onclick="closePopup()"> back </span>
+      <span class="close" onclick="closePopup()">x</span>
     </div>
     <div class="scroll">
-      <img src="oct2023.jpg" alt="October 2023" class="border" onclick="openPopup('oct2023.jpg', 'hello')">
+      <img src="oct2023.jpg" alt="October 2023" class="border" onclick="openPopup('oct2023.jpg', 'hello world')">
       <img src="may2023.PNG" alt="May 2023" class="border" onclick="openPopup('may2023.PNG')">
       <img src="apr2023.PNG" alt="April 2023" class="border" onclick="openPopup('apr2023.PNG')">
       <img src="march2023.jpg" alt="March 2023" class="border" onclick="openPopup('march2023.jpg')">
@@ -270,7 +286,7 @@
       <img src="jan2022.jpg" alt="January 2022" class="border" onclick="openPopup('jan2022.jpg')">
       <img src="mar2021.JPG" alt="March 2021" class="border" onclick="openPopup('mar2021.JPG')">
       <img src="may2019.JPG" alt="May 2019" class="border" onclick="openPopup('may2019.JPG')">
-			<p class="p">Thanks for viewing! Click here for my website!</p>
+			<p class="p"><a href="https://liumichelle.carrd.co/" target="_blank">Thanks for viewing! Click here for my website</a></p>
     </div>
 		
     <div><br><br><br></div>
